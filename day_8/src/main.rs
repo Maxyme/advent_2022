@@ -44,11 +44,11 @@ fn main() {
 }
 
 fn get_scenic_score(height: u32, coord: &(usize, usize), trees_map: &Array2<u32>) -> usize {
-    let right = s!(coord.0..=coord.0, coord.1 + 1..trees_map.ncols());
+    let right = s!(coord.0, coord.1 + 1..trees_map.ncols());
     // Make sure to reverse left and up
-    let left = s!(coord.0..=coord.0, 0..coord.1; -1);
-    let up = s!(0..coord.0, coord.1..=coord.1);
-    let down = s!(coord.0 + 1..trees_map.nrows(), coord.1..=coord.1);
+    let left = s!(coord.0, 0..coord.1; -1);
+    let up = s!(0..coord.0, coord.1);
+    let down = s!(coord.0 + 1..trees_map.nrows(), coord.1);
 
     let mut scenic_score = 1;
     for slice in [right, down, left] {
